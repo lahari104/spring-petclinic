@@ -1,24 +1,20 @@
 pipeline{
     agent{
-        label 'docker'
+        label 'node-1'
     }
     triggers{
         pollSCM('* * * * *')
     }
-    parameters{
-        choice(name: 'branch_name', choices: ['main', 'two', 'three'], description: 'selecting branch')
-    }
-    environment{
-        dockerhub_registry_name = "lahari104"
-        image_name = "spc" 
-    }
     stages{
-        stage('docker image build'){
+        stage('clone'){
             steps{
-                sh """
-                      docker image build -t ${image_name}:${BUILD_NUMBER}-${NODE_NAME} . 
-                      docker image ls
-                    """  
+                git url: 'https://github.com/lahari104/spring-petclinic.git',
+                    branch: 'lahari'
+            }
+        }
+        stage('build'){
+            steps{
+                sh """mvn clean package"""
             }
         }
     }
