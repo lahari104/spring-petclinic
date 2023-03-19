@@ -14,7 +14,17 @@ pipeline{
         }
         stage('build'){
             steps{
-                sh """mvn clean package"""
+                sh """/opt/maven/bin/mvn clean package"""
+            }
+        }
+        stage('archive artifacts'){
+            steps{
+                archiveArtifacts artifacts: '**/target/*.jar', followSymlinks: false
+            }
+        }
+        stage('junit'){
+            steps{
+                junit '**/surefire-reports/*.xml'
             }
         }
     }
