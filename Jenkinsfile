@@ -1,24 +1,24 @@
 pipeline{
     agent{
-        label 'docker'
+        label 'puppy' 
     }
     triggers{
         pollSCM('* * * * *')
     }
-    parameters{
-        choice(name: 'branch_name', choices: ['main', 'two', 'three'], description: 'selecting branch')
-    }
-    environment{
-        dockerhub_registry_name = "lahari104"
-        image_name = "spc" 
-    }
     stages{
-        stage('docker image build'){
+        stage('clone'){
+            steps{
+                git url: 'https://github.com/lahari104/spring-petclinic.git',
+                    branch: 'new'
+            }
+        }
+        stage('build'){
             steps{
                 sh """
-                      docker image build -t ${image_name}:${BUILD_NUMBER}-${NODE_NAME} . 
-                      docker image ls
-                    """  
+                    docker build -t spc:1.0 .
+                    docker run -d -P --name lahari spc:1.0
+                    docker ps -a
+                """
             }
         }
     }
