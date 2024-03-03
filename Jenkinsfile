@@ -34,34 +34,36 @@ pipeline{
     }
     post{
         always{
+            echo "The pipeline is started! for $env.JOB_NAME"
             mail to: 'laharigoruputi2001@gmail.com',
                  subject: 'Pipeline Status',
                  body: """
-                    Build is started for "${env.BUILD_URL}"
+                    Build is started for $env.BUILD_URL
                     """
         }
-        failure {
+        failure{
+            echo "The pipeline is failed! for $env.JOB_NAME"
             mail to: 'laharigoruputi2001@gmail.com',
                  subject: 'Pipeline Status',
                  body: """
-                    Build is failed for "${env.BUILD_URL}"
-                    """
+                    Build is failed for $env.BUILD_URL
+                 """
         }
-        // aborted{
-        //     echo "The pipeline is aborted! for $env.JOB_NAME"
-        //     mail to: 'laharigoruputi2001@gmail.com',
-        //          subject: 'Pipeline Status',
-        //          body: """
-        //             Build is aborted for $env.BUILD_URL
-        //          """
-        // }
-        // success{
-        //     echo "The pipeline is success! for $env.JOB_NAME"
-        //     mail to: 'laharigoruputi2001@gmail.com',
-        //          subject: 'Pipeline Status',
-        //          body: """
-        //             Build is successful for $env.BUILD_URL
-        //          """
-        // }
+        aborted{
+            echo "The pipeline is aborted! for $env.JOB_NAME"
+            mail to: 'laharigoruputi2001@gmail.com',
+                 subject: 'Pipeline Status',
+                 body: """
+                    Build is aborted for $env.BUILD_URL
+                 """
+        }
+        success{
+            echo "The pipeline is success! for $env.JOB_NAME"
+            mail to: 'laharigoruputi2001@gmail.com',
+                 subject: 'Pipeline Status',
+                 body: """
+                    Build is successful for $env.BUILD_URL
+                 """
+        }
     }
 } 
