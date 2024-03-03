@@ -5,11 +5,12 @@ pipeline{
     triggers{
         pollSCM('* * * * *')
     }
+    parameters { choice(name: 'branch_trigger', choices: ['new', 'main'], description: 'selecting branch name') }
     stages{
         stage('clone'){
             steps{
                 git url: 'https://github.com/lahari104/spring-petclinic.git',
-                    branch: 'new'
+                    branch: "${params.branch_trigger}"
             }
         }
         stage('build'){
