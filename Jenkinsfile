@@ -24,8 +24,8 @@ pipeline{
                 sh """
                     docker build -t $env.image_name:v${BUILD_NUMBER} .
                     docker run -d -P --name $env.container_name-${BUILD_NUMBER} $env.image_name:v${BUILD_NUMBER}
-                    docker tag $env.image_name:v${BUILD_NUMBER} ${ECR_REG_NAME}:spc-v${BUILD_NUMBER}
-                    docker push ${ECR_REG_NAME}:spc-v${BUILD_NUMBER}
+                    docker tag $env.image_name:v${BUILD_NUMBER} ${DOCKER_HUB_REG_NAME}:spc-v${BUILD_NUMBER}
+                    docker push ${DOCKER_HUB_REG_NAME}:spc-v${BUILD_NUMBER}
                     docker image ls
                     docker ps -a
                 """
