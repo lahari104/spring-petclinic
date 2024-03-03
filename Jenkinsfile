@@ -22,8 +22,6 @@ pipeline{
                 sh """
                     docker build -t $env.image_name:v${BUILD_NUMBER} .
                     docker run -d -P --name $env.container_name-${BUILD_NUMBER} $env.image_name:v${BUILD_NUMBER}
-                    docker image rm spc:1.0
-                    docker rm -f lahari
                     docker image ls
                     docker ps -a
                 """
