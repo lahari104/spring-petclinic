@@ -6,6 +6,10 @@ pipeline{
         pollSCM('* * * * *')
     }
     parameters { choice(name: 'branch_trigger', choices: ['new', 'main'], description: 'selecting branch name') }
+    environment{
+        image_name = "spc"
+        container_name = "spring-petclinic"
+    }
     stages{
         stage('clone'){
             steps{
@@ -16,8 +20,10 @@ pipeline{
         stage('build'){
             steps{
                 sh """
-                    docker build -t spc:1.0 .
-                    docker run -d -P --name lahari spc:1.0
+                    docker build -t $env.image_name:${BUILD_NUMBER} .
+                    docker run -d -P --name $env.container_name $env.image_name:${BUILD_NUMBER}
+                    docker image rm spc:1.0
+                    docker rm -f lahari
                     docker ps -a
                 """
             }
