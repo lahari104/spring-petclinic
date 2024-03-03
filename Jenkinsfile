@@ -34,36 +34,36 @@ pipeline{
     }
     post{
         always{
-            echo "The pipeline is started! for $JOB_NAME"
-            mail to: "laharigoruputi2001@gmail.com"
+            echo "The pipeline is started! for $env.JOB_NAME"
+            mail to: 'laharigoruputi2001@gmail.com'
                  body: """
-                    Build is started for $BUILD_URL
-                 """
-                 subject: "Pipeline Status"
+                    Build is started for $env.BUILD_URL
+                    """
+                 subject: 'Pipeline Status'
         }
         failure{
-            echo "The pipeline is failed! for $JOB_NAME"
-            mail to: "laharigoruputi2001@gmail.com"
+            echo "The pipeline is failed! for $env.JOB_NAME"
+            mail to: 'laharigoruputi2001@gmail.com'
                  body: """
-                    Build is failed for $BUILD_URL
+                    Build is failed for $env.BUILD_URL
                  """
-                 subject: "Pipeline Status"
+                 subject: 'Pipeline Status'
         }
         aborted{
-            echo "The pipeline is aborted! for $JOB_NAME"
-            mail to: "laharigoruputi2001@gmail.com"
+            echo "The pipeline is aborted! for $env.JOB_NAME"
+            mail to: 'laharigoruputi2001@gmail.com'
                  body: """
-                    Build is aborted for $BUILD_URL
+                    Build is aborted for $env.BUILD_URL
                  """
-                 subject: "Pipeline Status"
+                 subject: 'Pipeline Status'
         }
         success{
-            echo "The pipeline is success! for $JOB_NAME"
-            mail to: "laharigoruputi2001@gmail.com"
+            echo "The pipeline is success! for $env.JOB_NAME"
+            mail to: 'laharigoruputi2001@gmail.com'
                  body: """
-                    Build is successful for $BUILD_URL
+                    Build is successful for $env.BUILD_URL
                  """
-                 subject: "Pipeline Status"
+                 subject: 'Pipeline Status'
         }
     }
 } 
