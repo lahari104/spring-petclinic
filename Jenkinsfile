@@ -32,4 +32,38 @@ pipeline{
             }
         }
     }
+    post{
+        always{
+            echo "The pipeline is started! for $JOB_NAME"
+            mail to: "laharigoruputi2001@gmail.com"
+                 body: """
+                    Build is started for $BUILD_URL
+                 """
+                 subject: "Pipeline Status"
+        }
+        failure{
+            echo "The pipeline is failed! for $JOB_NAME"
+            mail to: "laharigoruputi2001@gmail.com"
+                 body: """
+                    Build is failed for $BUILD_URL
+                 """
+                 subject: "Pipeline Status"
+        }
+        aborted{
+            echo "The pipeline is aborted! for $JOB_NAME"
+            mail to: "laharigoruputi2001@gmail.com"
+                 body: """
+                    Build is aborted for $BUILD_URL
+                 """
+                 subject: "Pipeline Status"
+        }
+        success{
+            echo "The pipeline is success! for $JOB_NAME"
+            mail to: "laharigoruputi2001@gmail.com"
+                 body: """
+                    Build is successful for $BUILD_URL
+                 """
+                 subject: "Pipeline Status"
+        }
+    }
 } 
