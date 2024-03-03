@@ -58,7 +58,6 @@ pipeline{
                  """
         }
         success{
-            junit '**/surefire-reports/*.xml'
             echo "The pipeline is success! for $env.JOB_NAME"
             mail to: 'laharigoruputi2001@gmail.com',
                  subject: 'Pipeline Status',
