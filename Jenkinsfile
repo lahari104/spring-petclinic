@@ -13,7 +13,9 @@ pipeline{
             }
         }
         stage('build'){
-            "sh ./mvnw package"
+            steps{
+                "sh ./mvnw package"
+            }
         }
     }
 }
