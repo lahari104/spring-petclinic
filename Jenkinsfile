@@ -14,7 +14,7 @@ pipeline{
         }
         stage('build'){
             steps{
-                "sh ./mvnw package"
+                "sh pwd && ls"
             }
         }
     }
