@@ -1,25 +1,19 @@
 pipeline{
-    agent{
-        label 'docker'
+    agent {
+        label 'sonar-spc'
     }
-    triggers{
+    triggers {
         pollSCM('* * * * *')
     }
-    parameters{
-        choice(name: 'branch_name', choices: ['main', 'two', 'three'], description: 'selecting branch')
-    }
-    environment{
-        dockerhub_registry_name = "lahari104"
-        image_name = "spc" 
-    }
-    stages{
-        stage('docker image build'){
+    stages {
+        stage('clone'){
             steps{
-                sh """
-                      docker image build -t ${image_name}:${BUILD_NUMBER}-${NODE_NAME} . 
-                      docker image ls
-                    """  
+                git url: 'https://github.com/lahari104/spring-petclinic.git',
+                    branch: 'sonarqube'
             }
+        }
+        stage('build'){
+            "sh ./mvnw package"
         }
     }
 }
