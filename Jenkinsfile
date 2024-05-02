@@ -31,19 +31,19 @@ pipeline{
                             nexusVersion: nexus3,
                             protocol: 'http',
                             nexusUrl: '100.25.131.22:8081',
-                            groupId: pom.groupId,
-                            version: pom.version,
-                            repository: maven-nexus,
+                            groupId: 'pom.org.springframework.samples',
+                            version: 'pom.3.0.0-SNAPSHOT',
+                            repository: 'maven-nexus',
                             credentialsId: 'ac09c93b-8645-4f88-90f3-077b7101bdcc',
                             artifacts: [
-                                [artifactId: pom.artifactId,
+                                [artifactId: 'pom.spring-petclinic',
                                 classifier: '',
                                 file: artifactPath,
                                 type: pom.packaging],
-                                [artifactId: pom.artifactId,
+                                [artifactId: 'pom.spring-petclinic',
                                 classifier: '',
-                                file: "pom.xml",
-                                type: "pom"]
+                                file: 'pom.xml',
+                                type: 'pom']
                             ]
                         );
                     // } else {
