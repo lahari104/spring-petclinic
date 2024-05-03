@@ -39,11 +39,8 @@ pipeline{
                                 [artifactId: 'pom.spring-petclinic',
                                 classifier: '',
                                 file: "target/spring-petclinic-3.0.0-SNAPSHOT.jar",
-                                type: "jar"],
-                                [artifactId: 'pom.spring-petclinic',
-                                classifier: '',
-                                file: "pom.xml",
-                                type: "pom"]
+                                type: "jar"]
+                                
                             ]
                         );
                     } else {
