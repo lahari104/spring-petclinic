@@ -31,12 +31,12 @@ pipeline{
                             nexusVersion: 'nexus3',
                             protocol: 'http',
                             nexusUrl: '100.25.4.7:8081',
-                            groupId: 'pom.org.springframework.samples',
-                            version: 'pom.3.0.0-SNAPSHOT',
+                            groupId: 'org.springframework.samples',
+                            version: '3.0.0-SNAPSHOT',
                             repository: 'maven-nexus',
                             credentialsId: 'NexusID',
                             artifacts: [
-                                [artifactId: 'pom.spring-petclinic',
+                                [artifactId: 'spring-petclinic',
                                 classifier: '',
                                 file: "target/spring-petclinic-3.0.0-SNAPSHOT.jar",
                                 type: "jar"]
