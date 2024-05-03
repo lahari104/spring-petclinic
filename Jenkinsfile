@@ -26,7 +26,7 @@ pipeline{
                     artifactPath = filesByGlob[0].path;
                     artifactExists = fileExists artifactPath;
                     if(artifactExists) {
-                        echo "*** File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${pom.version}";
+                        echo "*** File: ${artifactPath}, group: ${pom.org.springframework.samples}, packaging: ${pom.packaging}, version ${pom.3.0.0-SNAPSHOT}";
                         nexusArtifactUploader(
                             nexusVersion: 'nexus3',
                             protocol: 'http',
@@ -38,7 +38,7 @@ pipeline{
                             artifacts: [
                                 [artifactId: 'pom.spring-petclinic',
                                 classifier: '',
-                                file: "target/spring-petclinic-${mavenPom.version}.jar",
+                                file: "target/spring-petclinic-3.0.0-SNAPSHOT.jar",
                                 type: "jar"],
                                 [artifactId: 'pom.spring-petclinic',
                                 classifier: '',
