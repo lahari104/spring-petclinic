@@ -30,7 +30,7 @@ pipeline{
                         nexusArtifactUploader(
                             nexusVersion: 'nexus3',
                             protocol: 'http',
-                            nexusUrl: '100.25.131.22:8081',
+                            nexusUrl: '100.25.4.7:8081',
                             groupId: 'pom.org.springframework.boot',
                             version: 'pom.3.0.1',
                             repository: 'maven-nexus',
