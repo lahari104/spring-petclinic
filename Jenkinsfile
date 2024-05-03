@@ -21,14 +21,14 @@ pipeline{
             steps{
                 script {
                     pom = readMavenPom file: "pom.xml";
-                    // filesByGlob = findFiles(glob: "target/*.jar");
-                    // echo "${filesByGlob[0].name} ${filesByGlob[0].path} ${filesByGlob[0].directory} ${filesByGlob[0].length} ${filesByGlob[0].lastModified}"
-                    // artifactPath = filesByGlob[0].path;
-                    // artifactExists = fileExists artifactPath;
-                    // if(artifactExists) {
-                    //     echo "*** File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${pom.version}";
+                    filesByGlob = findFiles(glob: "target/*.jar");
+                    echo "${filesByGlob[0].name} ${filesByGlob[0].path} ${filesByGlob[0].directory} ${filesByGlob[0].length} ${filesByGlob[0].lastModified}"
+                    artifactPath = filesByGlob[0].path;
+                    artifactExists = fileExists artifactPath;
+                    if(artifactExists) {
+                        echo "*** File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${pom.version}";
                         nexusArtifactUploader(
-                            nexusVersion: nexus3,
+                            nexusVersion: 'nexus3',
                             protocol: 'http',
                             nexusUrl: '100.25.131.22:8081',
                             groupId: 'pom.org.springframework.samples',
@@ -38,17 +38,17 @@ pipeline{
                             artifacts: [
                                 [artifactId: 'pom.spring-petclinic',
                                 classifier: '',
-                                file: artifactPath,
-                                type: pom.packaging],
+                                file: "target/simple-app-${mavenPom.version}.war",
+                                type: "war"],
                                 [artifactId: 'pom.spring-petclinic',
                                 classifier: '',
-                                file: 'pom.xml',
-                                type: 'pom']
+                                file: "pom.xml",
+                                type: "pom"]
                             ]
                         );
-                    // } else {
-                    //     error "*** File: ${artifactPath}, could not be found";
-                    // }
+                    } else {
+                        error "*** File: ${artifactPath}, could not be found";
+                    }
                 }
             }
         }
