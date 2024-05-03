@@ -38,8 +38,8 @@ pipeline{
                             artifacts: [
                                 [artifactId: 'pom.spring-petclinic',
                                 classifier: '',
-                                file: "target/simple-app-${mavenPom.version}.war",
-                                type: "war"],
+                                file: "target/spring-petclinic-${mavenPom.version}.jar",
+                                type: "jar"],
                                 [artifactId: 'pom.spring-petclinic',
                                 classifier: '',
                                 file: "pom.xml",
