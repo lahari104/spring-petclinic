@@ -34,7 +34,7 @@ pipeline{
                             groupId: 'pom.org.springframework.samples',
                             version: 'pom.3.0.0-SNAPSHOT',
                             repository: 'maven-nexus',
-                            credentialsId: 'ac09c93b-8645-4f88-90f3-077b7101bdcc',
+                            credentialsId: 'NexusID',
                             artifacts: [
                                 [artifactId: 'pom.spring-petclinic',
                                 classifier: '',
