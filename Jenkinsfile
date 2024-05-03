@@ -26,7 +26,7 @@ pipeline{
                     artifactPath = filesByGlob[0].path;
                     artifactExists = fileExists artifactPath;
                     if(artifactExists) {
-                        echo "*** File: ${artifactPath}, group: ${pom.org.springframework.samples}, packaging: ${pom.packaging}, version ${pom.3.0.0-SNAPSHOT}";
+                        echo "*** File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${pom.version}";
                         nexusArtifactUploader(
                             nexusVersion: 'nexus3',
                             protocol: 'http',
