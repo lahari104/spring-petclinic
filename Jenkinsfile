@@ -1,7 +1,5 @@
 pipeline{
-    agent{
-        label 'ansible'
-    }
+    agent any
     triggers{
         pollSCM('* * * * *')
     }
