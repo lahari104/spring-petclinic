@@ -1,0 +1,19 @@
+---
+ - name: Sringpetclinic
+   hosts: all
+   become: yes
+   
+   tasks:
+    - name: install java-17 and git
+      ansible.builtin.apt: 
+        name: 
+          - openjdk-17-jdk
+          - git
+        update_cache: yes
+        state: present
+    
+    - name: clone git repo and build the code
+      ansible.builtin.shell: |
+        git clone https://github.com/lahari104/spring-petclinic.git
+        cd spring-petclinic
+        ./mvnw package

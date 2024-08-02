@@ -1,24 +1,19 @@
 pipeline{
     agent{
-        label 'docker'
+        label 'ansible'
     }
     triggers{
         pollSCM('* * * * *')
     }
-    parameters{
-        choice(name: 'branch_name', choices: ['main', 'two', 'three'], description: 'selecting branch')
-    }
-    environment{
-        dockerhub_registry_name = "lahari104"
-        image_name = "spc" 
-    }
     stages{
-        stage('docker image build'){
+        stage('clone and ansible'){
             steps{
                 sh """
-                      docker image build -t ${image_name}:${BUILD_NUMBER}-${NODE_NAME} . 
-                      docker image ls
-                    """  
+                    git clone "https://github.com/lahari104/spring-petclinic.git"
+                    cd spring-petclinic
+                    ansible -m ping -i hosts ansible-jenkins.yaml
+                    ansible-playbook -i hosts ansible-jenkins.yaml
+                """
             }
         }
     }
