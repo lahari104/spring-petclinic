@@ -10,6 +10,7 @@ pipeline{
             steps{
                 sh """
                     cd ansible/
+                    ansible all -i hosts -m ping -vvv
                     ansible-playbook -i hosts ansible-jenkins.yaml
                 """
             }
