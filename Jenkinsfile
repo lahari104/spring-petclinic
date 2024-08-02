@@ -9,7 +9,8 @@ pipeline{
         stage('clone and ansible'){
             steps{
                 sh """
-                    ansible -m ping -i hosts node
+                    cd ansible/
+                    ansible -m ping -i hosts all
                     ansible-playbook -i hosts ansible-jenkins.yaml
                 """
             }
