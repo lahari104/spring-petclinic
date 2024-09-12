@@ -1,29 +1,26 @@
-# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
-# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
-
-name: Java CI with Maven
+---
+name: Build spc
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - lahari
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
-  build:
-
+  Build_Java_Application:
+    name: Cloning the repo and setting up the environment to build
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        java: [ '17' ]
-
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up JDK ${{matrix.java}}
-        uses: actions/setup-java@v2
-        with:
-          java-version: ${{matrix.java}}
-          distribution: 'adopt'
-          cache: maven
-      - name: Build with Maven Wrapper
-        run: ./mvnw -B package
+      - name: Checkout out to repo
+        uses: actions/checkout@v3 # We use "uses" in the steps when we are using predefined github-action
+      
+      - name: Install java-17
+        run: |
+          sudo apt update
+          sudo apt install openjdk-17-jdk -y
+
+      - name: Build java
+        run: ./mvnw package && ls -al **/target
