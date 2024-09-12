@@ -24,4 +24,4 @@ jobs:
           sudo apt install openjdk-17-jdk -y
 
       - name: Build java
-        run: ./mvnw package && ls -al **/target
+        run: ./mvnw package && ls -al
