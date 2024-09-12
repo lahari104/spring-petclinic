@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - lahari
+      - github-actions
   pull_request:
     branches:
       - main
