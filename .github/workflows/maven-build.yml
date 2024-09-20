@@ -13,7 +13,7 @@ on:
 jobs:
   Build_Java_Application:
     name: Cloning the repo and setting up the environment to build
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Checkout out to repo
         uses: actions/checkout@v3 # We use "uses" in the steps when we are using predefined github-action
