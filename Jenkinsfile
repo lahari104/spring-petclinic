@@ -13,9 +13,8 @@ pipeline{
         stage('build and deploy'){
             steps{
                 sh """
-                      docker image build -t java-jenkins:1.0 .
+                      docker image build -t lahari23/insignia:${env.BUILD_ID} .
                       docker image ls
-                      docker tag java-jenkins:latest lahari23/insignia:${env.BUILD_ID}
                       docker push lahari23/insignia:${env.BUILD_ID}
                       docker run -d -P --name spc-${env.BUILD_ID} lahari23/insignia:${env.BUILD_ID}
                     """
