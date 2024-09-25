@@ -13,10 +13,10 @@ pipeline{
         stage('build and deploy'){
             steps{
                 sh """
-                      docker image build -t lahari23/insignia:${env.BUILD_ID} .
+                      docker image build -t 232589951422.dkr.ecr.us-east-1.amazonaws.com/insignia:${env.BUILD_ID} .
                       docker image ls
-                      docker push lahari23/insignia:${env.BUILD_ID}
-                      docker run -d -P --name spc-${env.BUILD_ID} lahari23/insignia:${env.BUILD_ID}
+                      docker push 232589951422.dkr.ecr.us-east-1.amazonaws.com/insignia:${env.BUILD_ID}
+                      docker run -d -P --name spc-${env.BUILD_ID} 232589951422.dkr.ecr.us-east-1.amazonaws.com/insignia:${env.BUILD_ID}
                     """
             }
         }
