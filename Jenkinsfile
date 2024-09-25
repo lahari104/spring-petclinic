@@ -5,8 +5,10 @@ pipeline{
     }
     stages{
         stage('clone'){
-            git url: 'https://github.com/lahari104/spring-petclinic.git',
-                branch: 'java-dockerfile'
+            steps{
+                git url: 'https://github.com/lahari104/spring-petclinic.git',
+                    branch: 'java-dockerfile'
+            }
         }
         stage('build and deploy'){
             steps{
