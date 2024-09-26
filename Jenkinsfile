@@ -3,6 +3,9 @@ pipeline{
     triggers{
         pollSCM('* * * * *')
     }
+    environment{
+        AWS_CREDENTIALS = 'java-project'
+    }
     stages{
         stage('clone'){
             steps{
