@@ -4,7 +4,7 @@ pipeline{
         pollSCM('* * * * *')
     }
     environment{
-        AWS_CREDENTIALS = 'java-project'
+        AWS_CREDENTIALS = 'java_project'
     }
     stages{
         stage('clone'){
@@ -17,7 +17,7 @@ pipeline{
             steps{
                 withCredentials([[
                     $class: 'AmazonWebServicesCredentialsBinding',
-                    credentialsId: 'java-project'  // Use Jenkins credentials ID
+                    credentialsId: 'java_project'  // Use Jenkins credentials ID
                 ]]) {
                     sh """
                         aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 232589951422.dkr.ecr.us-east-1.amazonaws.com
