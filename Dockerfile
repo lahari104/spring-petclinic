@@ -6,5 +6,5 @@ RUN apt update && \
     cd spring-petclinic && \
     ./mvnw package
 EXPOSE 8080
-CMD [ "java", "-jar", "*.jar" ]    
+CMD [ "java", "-jar", "/spring-petclinic/target/spring-petclinic-3.0.0-SNAPSHOT.jar" ]    
     
