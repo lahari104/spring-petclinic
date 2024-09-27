@@ -1,0 +1,16 @@
+apiVersion: core
+kind: Service
+metadata:
+  name: spc-service
+  labels:
+    app: spc
+spec:
+  type: LoadBalancer
+  selector:
+    name: spc-deployment
+    ports:
+      - name: spc-port
+        port: 8080
+        targetPort: 8080
+        protocol: "TCP"
+        

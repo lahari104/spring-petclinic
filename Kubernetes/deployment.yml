@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: spc-deployment
+  labels:
+    app: spc
+spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable:  25%
+  selector:
+    matchLabels:
+      app: spc    
+  template:
+    metadata:
+      labels:
+        app: spc
+    spec:
+      containers:
+        - name: spc-container
+          image: 232589951422.dkr.ecr.us-east-1.amazonaws.com/insignia:${env.BUILD_ID}
+          ports:
+            - name: spc-port
+              containerPort: 8080
+              protocol: "TCP"

@@ -13,7 +13,7 @@ pipeline{
                     branch: 'java-dockerfile'
             }
         }
-        stage('build and deploy'){
+        stage('build and push'){
             steps{
                 withCredentials([[
                     $class: 'AmazonWebServicesCredentialsBinding',
@@ -27,6 +27,17 @@ pipeline{
                         docker run -d -P --name spc-${env.BUILD_ID} 232589951422.dkr.ecr.us-east-1.amazonaws.com/insignia:${env.BUILD_ID}
                     """
                 }    
+            }
+        }
+        stage('deploy'){
+            steps{
+                sh """
+                    aws eks update-kubeconfig --name insignia-cluster --region us-east-1
+                    cd Kubernetes/
+                    kubectl apply -f .
+                    kubectl get nodes
+                    kubectl get pods
+                """
             }
         }
     }
