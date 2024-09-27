@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: spc-container
-          image: 232589951422.dkr.ecr.us-east-1.amazonaws.com/insignia:${env.BUILD_ID}
+          image: 232589951422.dkr.ecr.us-east-1.amazonaws.com/insignia:26
           ports:
             - name: spc-port
               containerPort: 8080

@@ -1,4 +1,4 @@
-apiVersion: core
+apiVersion: v1
 kind: Service
 metadata:
   name: spc-service
