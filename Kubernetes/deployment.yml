@@ -1,10 +1,12 @@
+---
 apiVersion: apps/v1
 kind: Deployment
-metadata: 
-  name: spc-deployment
+metadata:
+  name: spc-deploy
   labels:
     app: spc
 spec:
+  replicas: 1
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -12,7 +14,7 @@ spec:
       maxUnavailable:  25%
   selector:
     matchLabels:
-      app: spc    
+      app: spc
   template:
     metadata:
       labels:
@@ -22,6 +24,23 @@ spec:
         - name: spc-container
           image: 232589951422.dkr.ecr.us-east-1.amazonaws.com/insignia:26
           ports:
-            - name: spc-port
-              containerPort: 8080
-              protocol: "TCP"
+            - containerPort: 8080
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "500m"
+            limits:
+              memory: "1Gi"
+              cpu: "1"
+          livenessProbe:
+            exec:
+              command:
+                - ls
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            exec:
+              command:
+                - ls
+            initialDelaySeconds: 15
+            periodSeconds: 10
