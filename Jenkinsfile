@@ -36,7 +36,7 @@ pipeline{
                     credentialsId: 'java_project'  // Use Jenkins credentials ID
                 ]]){
                 sh """
-                    aws eks update-kubeconfig --name insignia-cluster --region us-east-1
+                    aws eks update-kubeconfig --name eks-cluster --region us-east-1
                     cd Kubernetes/
                     kubectl apply -f .
                     kubectl get nodes
